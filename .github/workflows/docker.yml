@@ -29,8 +29,8 @@ jobs:
   
     - name: build all
       run: |
-        docker buildx build  --platform linux/amd64 -f alpine-latest -t $DOCKER_USER/${{ github.event.repository.name }}:latest . --push
-        docker buildx build  --platform linux/amd64 -f 3.12-alpine -t $DOCKER_USER/${{ github.event.repository.name }}:3.12-alpine . --push
+        docker buildx build  --platform linux/amd64,linux/arm64 -f alpine-latest -t $DOCKER_USER/${{ github.event.repository.name }}:latest . --push
+        docker buildx build  --platform linux/amd64,linux/arm64 -f 3.12-alpine -t $DOCKER_USER/${{ github.event.repository.name }}:3.12-alpine . --push
 
     - name: log out of docker
       run: docker logout
