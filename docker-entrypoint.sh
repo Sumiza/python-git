@@ -14,10 +14,10 @@ else
         tok=""
 fi
 
-url=https://"$tok"github.com/"$USER"/"$REPO"
-
-git clone --depth 1 --quiet "$url" || exit 1
-
-cd $REPO || exit 1
+if [ -n "$REPO" ] && [ -n "$USER" ]; then
+        url=https://"$tok"github.com/"$USER"/"$REPO"
+        git clone --depth 1 --quiet "$url" || exit 1
+        cd "$REPO" || exit 1
+fi
 
 exec "$@"
