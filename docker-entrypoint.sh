@@ -16,7 +16,6 @@ fi
 
 url=https://"$tok"github.com/"$USER"/"$REPO"
 
-apk add git
 git clone --depth 1 --quiet "$url" || exit 1
 
 cd $REPO || exit 1
