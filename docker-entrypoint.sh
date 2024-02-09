@@ -15,6 +15,7 @@ else
 fi
 
 if [ -n "$REPO" ] && [ -n "$USER" ]; then
+        rm -rf "$REPO"
         url=https://"$tok"github.com/"$USER"/"$REPO"
         git clone --depth 1 --quiet "$url" || exit 1
         cd "$REPO" || exit 1
