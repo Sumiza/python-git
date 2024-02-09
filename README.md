@@ -15,4 +15,6 @@ services:
       USER: sumiza
       REPO: scripts
       PIP_INSTALL: 'requests'
+
+    command: "python main.py"
 ```
