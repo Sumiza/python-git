@@ -29,13 +29,13 @@ jobs:
   
     - name: build and push all
       run: |
-        docker buildx build  --platform linux/amd64,linux/arm64 -f alpine -t $DOCKER_USER/${{ github.event.repository.name }}:alpine . --push
+        docker buildx build  --platform linux/amd64,linux/arm64 -f latest-alpine -t $DOCKER_USER/${{ github.event.repository.name }}:alpine . --push
         docker buildx build  --platform linux/amd64,linux/arm64 -f 3.11-alpine -t $DOCKER_USER/${{ github.event.repository.name }}:3.11-alpine . --push
         
         docker buildx build  --platform linux/amd64,linux/arm64 -f latest -t $DOCKER_USER/${{ github.event.repository.name }}:latest . --push
         docker buildx build  --platform linux/amd64,linux/arm64 -f 3.11-bookworm -t $DOCKER_USER/${{ github.event.repository.name }}:3.11-bookworm . --push
         
-        docker buildx build  --platform linux/amd64,linux/arm64 -f slim -t $DOCKER_USER/${{ github.event.repository.name }}:slim . --push
+        docker buildx build  --platform linux/amd64,linux/arm64 -f latest-slim -t $DOCKER_USER/${{ github.event.repository.name }}:slim . --push
         docker buildx build  --platform linux/amd64,linux/arm64 -f 3.11-slim -t $DOCKER_USER/${{ github.event.repository.name }}:3.11-slim . --push
 
     - name: log out of docker
