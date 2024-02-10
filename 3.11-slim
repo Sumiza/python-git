@@ -1,8 +1,8 @@
-FROM python:3.12-alpine
+FROM python:3.11-slim
 
 ENV PYTHONUNBUFFERED=TRUE
 
-RUN apk add --no-cache git
+RUN apt update && apt install git -y
 RUN pip install --upgrade pip
 
 COPY docker-entrypoint.sh docker-entrypoint.sh
