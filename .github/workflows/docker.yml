@@ -27,7 +27,7 @@ jobs:
         docker logout
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u $DOCKER_USER --password-stdin
   
-    - name: build all
+    - name: build and push all
       run: |
         docker buildx build  --platform linux/amd64,linux/arm64 -f alpine -t $DOCKER_USER/${{ github.event.repository.name }}:alpine . --push
         docker buildx build  --platform linux/amd64,linux/arm64 -f 3.11-alpine -t $DOCKER_USER/${{ github.event.repository.name }}:3.11-alpine . --push
