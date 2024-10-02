@@ -1,18 +1,31 @@
 #!/bin/sh
 
 if [ -n "$INSTALL" ]; then
+        
         if command -v apt > /dev/null; then
-                apt update && apt install "$INSTALL" -y
+                apt update
+                for i in $INSTALL
+                do
+                        apt install --no-install-recommends "$i" -y
+                done
+                rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
+                
         elif command -v apk > /dev/null; then
-                apk add "$INSTALL"
+                apk update
+                for i in $INSTALL
+                do
+                        apk add "$i"
+                done
+                rm -rf /var/cache/apk/*
         fi
 fi
 
 if [ -n "$PIP_INSTALL" ]; then
-    for i in $PIP_INSTALL
+        for i in $PIP_INSTALL
         do
-            pip install "$i"
+                pip install "$i" --root-user-action=ignore
         done
+        pip cache purge
 fi
 
 if [ -n "$TOKEN" ]; then
