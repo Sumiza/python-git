@@ -34,31 +34,31 @@ jobs:
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
         -f latest-alpine \
         -t $DOCKER_USER/${{ github.event.repository.name }}:alpine \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12-alpine  . --push
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.13-alpine . --push
 
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        -f 3.11-alpine \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.11-alpine . --push
+        -f 3.12-alpine \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12-alpine . --push
         
         # Regular
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
         -f latest \
         -t $DOCKER_USER/${{ github.event.repository.name }}:latest \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12 . --push
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.13 . --push
 
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        -f 3.11 \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.11 . --push
+        -f 3.12 \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12 . --push
         
         # Slim
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
         -f latest-slim \
         -t $DOCKER_USER/${{ github.event.repository.name }}:slim \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12-slim . --push
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.13-slim . --push
 
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        -f 3.11-slim \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.11-slim . --push
+        -f 3.12-slim \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12-slim . --push
 
     - name: log out of docker
       run: docker logout

@@ -1,4 +1,6 @@
-# docker-blank-python
+# Python Git Docker Image
+
+```Updated to use Python 3.13```
 
 https://hub.docker.com/r/sumizadocker/python-git
 
