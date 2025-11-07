@@ -1,8 +1,8 @@
 # Python Git Docker Image
 
-> **Updated to use Python 3.13**
+> **Updated to use Python 3.14**
 
-This Docker image is based on the official [python](https://hub.docker.com/_/python) image, with additional tools installed such as `pip` and `git`.
+This Docker image is based on the official [python](https://hub.docker.com/_/python) image, with additional tools installed such as `pip`,`git` and entrypoint scripts to facilitate cloning GitHub repositories and installing packages.
 
 ## Features
 

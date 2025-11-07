@@ -8,7 +8,7 @@ on:
     branches: [ "main" ]
 
   schedule:
-    - cron:  '55 5 * * *'
+    - cron:  '5 1 * * 0'
 
 env:
   DOCKER_USER: sumizadocker
@@ -32,21 +32,33 @@ jobs:
         
         # Alpine
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        -f latest-alpine \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:alpine \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.14-alpine . --push
+        -f 3.12-alpine \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12-alpine . --push
+
+        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
+        -f 3.13-alpine \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.13-alpine . --push
+
 
         # Regular
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        -f latest \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:latest \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.14 . --push
+        -f 3.12 \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12 . --push
+        
+        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
+        -f 3.13 \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.13 . --push
+
         
         # Slim
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
-        -f latest-slim \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:slim \
-        -t $DOCKER_USER/${{ github.event.repository.name }}:3.14-slim . --push
+        -f 3.12-slim \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.12-slim . --push
+        
+        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
+        -f 3.13-slim \
+        -t $DOCKER_USER/${{ github.event.repository.name }}:3.13-slim . --push
+
 
     - name: log out of docker
       run: docker logout

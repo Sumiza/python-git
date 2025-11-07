@@ -1,7 +1,8 @@
-FROM python:3.14-bookworm
+FROM python:3.13-alpine
 
 ENV PYTHONUNBUFFERED=TRUE
 
+RUN apk add --no-cache git
 RUN pip install --upgrade pip
 
 COPY docker-entrypoint.sh docker-entrypoint.sh
