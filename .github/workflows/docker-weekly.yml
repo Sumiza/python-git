@@ -1,10 +1,7 @@
-name: Docker Build and Push Nightly
+name: Docker Build Weekly
 
 on:
   push:
-    branches: [ "main" ]
-
-  pull_request:
     branches: [ "main" ]
 
   schedule:
